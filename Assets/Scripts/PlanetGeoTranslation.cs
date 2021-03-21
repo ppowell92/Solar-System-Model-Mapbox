@@ -23,16 +23,38 @@ using UnityEngine.UIElements;
 public class PlanetGeoTranslation : MonoBehaviour
 {
     // Editor variables; can be changed in editor
-    [SerializeField] AbstractMap _map;
-    [SerializeField] string mapReferencePoint;                  // Where the map center is
-    [SerializeField] GameObject Sun;                            // Center position 3D model prefab
-    [SerializeField] TextAsset[] planetData;                    // array of NASA orbital data text files
-    [SerializeField] GameObject[] planetObjects;                // array of 3D model prefabs
-    [SerializeField] private float planetScale = .00125f;       // sets the size of planets
-    [SerializeField] private float delayTime = .01f;            // sets the delay in the coroutines
+    [Header("Map Settings")]
 
+    [SerializeField] 
+    AbstractMap _map;
+    
+    [SerializeField] 
+    string mapReferencePoint;                  // The central point of the model
+    
+    [Header("Sun Settings")]
+    [SerializeField] 
+    GameObject Sun;                           // Central 3D model that will be instantiated at mapReferencePoint
 
-    private float sunScale;                                     // used for Sun's scale. 
+    [SerializeField] 
+    bool isGLTF = true;                       // Is the prefab a NASA glTF model?
+    
+    [Header("Planet Data")]
+    
+    [SerializeField] 
+    TextAsset[] planetData;                    // array of NASA orbital data text files
+    
+    [SerializeField] 
+    GameObject[] planetObjects;                // array of 3D model prefabs
+    
+    [Header("Planet Settings")]
+    
+    [SerializeField] 
+    private float planetScale = .00125f;       // sets the size of planets
+    
+    [SerializeField] 
+    private float delayTime = .01f;            // sets the delay in the coroutines
+
+    private float sunScale;                    // used for Sun's scale. 
 
     // Indices responsible for iterating through each respective Vector2d list.
     private int mercIndex = 1;
@@ -67,8 +89,14 @@ public class PlanetGeoTranslation : MonoBehaviour
 
         referencePoint = Conversions.StringToLatLon(mapReferencePoint);
 
-        sunScale = planetScale * 1000;  // Sun model used is 1/1000 scale, comment out if using new model
-
+        if (isGLTF)
+        {
+            sunScale = planetScale * 1000;  // NASA's glTF model is 1/1000 scale
+        } else {
+            sunScale = planetScale;
+        }
+        
+        
         // Sun properties
         _sun = Instantiate(Sun);        // Creates a clone of the prefab
 
@@ -104,7 +132,6 @@ public class PlanetGeoTranslation : MonoBehaviour
 
         foreach (GameObject planet in planetObjects)
         {
-
             GameObject _planet = Instantiate(planet);      // Creates clones of planet prefabs
             _planet.transform.localScale = new Vector3(planetScale, planetScale, planetScale);
             SphereCollider planetCollider = _planet.AddComponent<SphereCollider>();
@@ -213,7 +240,6 @@ public class PlanetGeoTranslation : MonoBehaviour
                 default:
                     break;
             } // end switch
-
         } // end for
 
         // Continually updates the Sun's position on map
@@ -294,7 +320,7 @@ public class PlanetGeoTranslation : MonoBehaviour
         }
     } // end processPlanetData
 
-    // Coroutines
+    // Coroutines that will update each planet's geographical position in intervals of delayTime
     IEnumerator updateMercGeoVecs()
     {
         WaitForSeconds wait = new WaitForSeconds(delayTime);
@@ -304,22 +330,20 @@ public class PlanetGeoTranslation : MonoBehaviour
             mercIndex = mercIndex + 1;
             if (mercIndex == mercGeoVecs.Count) mercIndex = 0;
             yield return wait;
-        }
-
-    }
+        } // end while
+    } // end updateMercGeoVecs
 
     IEnumerator updateVenusGeoVecs()
     {
         WaitForSeconds wait = new WaitForSeconds(delayTime);
-
+        
         while (true)
         {
             venusIndex = venusIndex + 1;
             if (venusIndex == venusGeoVecs.Count) venusIndex = 0;
             yield return wait;
-        }
-
-    }
+        } // end while
+    } // end updateVenusGeoVecs
 
     IEnumerator updateEarthGeoVecs()
     {
@@ -369,7 +393,6 @@ public class PlanetGeoTranslation : MonoBehaviour
         } // end while
     } // end updateSaturnGeoVecs
 
-
     IEnumerator updateUranusGeoVecs()
     {
         WaitForSeconds wait = new WaitForSeconds(delayTime);
@@ -393,6 +416,7 @@ public class PlanetGeoTranslation : MonoBehaviour
             yield return wait;
         }// end while
     } // end updateNeptuneGeoVecs
+
     IEnumerator updatePlutoGeoVecs()
     {
         WaitForSeconds wait = new WaitForSeconds(delayTime);
@@ -404,4 +428,4 @@ public class PlanetGeoTranslation : MonoBehaviour
             yield return wait;
         } // end while
     } // end updatePlutoGeoVecs
-}
+} // end class

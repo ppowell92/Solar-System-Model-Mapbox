@@ -223,6 +223,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1257745499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257745501}
+  - component: {fileID: 1257745500}
+  m_Layer: 0
+  m_Name: SolarSystemController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1257745500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257745499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229a88e0a64fe7d49827ad88d452bbec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 142671397}
+  mapReferencePoint: 32.279,-106.7463
+  Sun: {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  isGLTF: 0
+  planetData:
+  - {fileID: 4900000, guid: 9081dca24e312074db2b7673a167c5a3, type: 3}
+  - {fileID: 4900000, guid: c2355af061398344eb23189c38f9ac90, type: 3}
+  - {fileID: 4900000, guid: 8c5757a2d4700c649bc5753aadae03e4, type: 3}
+  - {fileID: 4900000, guid: 5aa460462fcb09f47b6084f1c5d6b5d2, type: 3}
+  - {fileID: 4900000, guid: 2b94fa2c3c1ea1f4abb09dde40866fb9, type: 3}
+  - {fileID: 4900000, guid: 867cb3297b4ced74cb4c475f1c7c8c6a, type: 3}
+  - {fileID: 4900000, guid: 094d35017f41d1d4c863270b56f61d73, type: 3}
+  - {fileID: 4900000, guid: 8e9e6da422caec64e81eed8194a5a7ce, type: 3}
+  - {fileID: 4900000, guid: b6b586ad9fae2b7448d87bdb04ce63fe, type: 3}
+  planetObjects:
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  - {fileID: 2510143098072457484, guid: 0ceaf28b1e4fe8b47a9741bd1854a620, type: 3}
+  planetScale: 5
+  delayTime: 0.01
+--- !u!4 &1257745501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257745499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447039402
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +301,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447039403}
-  - component: {fileID: 1447039404}
   m_Layer: 0
   m_Name: MapController
   m_TagString: Untagged
@@ -255,23 +323,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1447039404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447039402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c699b8e1864b4b248acb7a04ede9480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _panSpeed: 5
-  _zoomSpeed: 1
-  _referenceCamera: {fileID: 848345022}
-  _mapManager: {fileID: 142671397}
-  _useDegreeMethod: 0
 --- !u!1 &1724380558
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +426,7 @@ GameObject:
   - component: {fileID: 2027577970}
   - component: {fileID: 2027577969}
   - component: {fileID: 2027577968}
+  - component: {fileID: 2027577971}
   m_Layer: 0
   m_Name: MovementController
   m_TagString: Untagged
@@ -430,6 +482,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2027577971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027577967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c699b8e1864b4b248acb7a04ede9480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panSpeed: 5
+  _zoomSpeed: 1
+  _referenceCamera: {fileID: 848345022}
+  _mapManager: {fileID: 142671397}
+  _useDegreeMethod: 0
 --- !u!1001 &2082704125
 PrefabInstance:
   m_ObjectHideFlags: 0
